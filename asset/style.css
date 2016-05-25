@@ -1,4 +1,5 @@
 .black-text{color: #222222;}.white-text{color: #ffffff;}.color-text{color: #FFCB16;}
+.center-text{text-align:center;} .title-text{font-weight: 500;}
 
 .spacer{
 	height: 2%;
@@ -13,6 +14,7 @@
 	height: 100%;
 	background-color: #222222;
 	position: fixed;
+	border-right: 2px solid #ffffff;
 }
 .row {
   margin-left: 0px;
@@ -23,5 +25,41 @@
   .sidepanel{
 	  position: inherit;
 	  height: auto;
+	  border-right: 0px solid #ffffff;
+	  border-bottom: 2px solid #ffffff;
   }
+  .character{
+	left: initial;
+	display: block;
+    margin: 0 auto;
+  }
+}
+
+#mainPanel{
+	height: 5000px;
+	background-image: url("stars.jpg");  
+}
+
+.character{
+	top: 25%;
+	width: 150px;
+	position: fixed;
+}
+
+.planetary-gap{
+	height: 10%;
+}
+
+.planet-1{
+	background-color: blue;
+	border-radius: 50%;
+	background-image: url("p1.png");
+	background-size:cover;
+	width: 500px;
+	height: 500px;
+	padding: 0;	
+}
+
+.planet-core{
+	margin-top: 200px;
 }
