@@ -1,18 +1,32 @@
+//CONSTANTS
+var NUM_PLANETS = 3;
+
 //LISTERNERS
 $(document).ready(function () {
 	nodePosition(".character");
-	shipPosition();
 	planetText();
 	$("#archedName").arctext({radius: 300});
 	planetPosition();	 
+	$('#astro').show();
+	$('#fire').hide();
 });
 $(window).resize(function () {
 	nodePosition(".character");
-	shipPosition();
 	planetText();
 	planetPosition();	
 });
 $(window).scroll(function() {
+	
+	if(digCheck() == true){
+		console.log("I AM IN A PLANET");
+		$("#astro").prop("src","./asset/hammer.png");
+		$("#astro").addClass("bounce");
+	}
+	else{
+		$("#astro").prop("src","./asset/astro.png");
+		$("#astro").removeClass("bounce");
+	}
+	
 	var height = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight; 
 	var doc = document.documentElement;
 	var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
@@ -35,21 +49,15 @@ function planetPosition(){
 	var initHeight = height+(height/2)+(planet.height()/2);
 	$(".mainPanel").css('height', height*4);	
 	$("body").attr('data-offset',initHeight);
+	$(".planetary-gap").css('margin-top', initHeight/2);
 	$('.planet').each(function(i, obj) {
 			$(this).css('margin-top', initHeight);
 	});
 }
-
-function shipPosition(){
-	var panelWidth = $("#mainPanel").width();
-	var node = $(".ship");
-	node.css('right', (panelWidth/2)-(node.width()/2)+14);
-}
-
 function nodePosition(nodeName){
 	var panelWidth = $("#mainPanel").width();
 	var node = $(nodeName);
-	node.css('right', (panelWidth/2)-(node.width()/2)+14);
+	node.css('right', (panelWidth/2)-(node.width()/2)+9);
 }
 function planetText(){
 	var planetWidth = $(".planet").width();
@@ -57,17 +65,65 @@ function planetText(){
 	node.css('margin-top', (planetWidth/2)-(node.height()/2)+14);
 }
 
+
 //ANIMATION FUNCTIONS
 function homeScroll(yCord){
 	$('#GoHome').prop("disabled",true);
-	$('.character').prop("src","./asset/fire.png");
-	$('.character').addClass("shake");
+	$('#fire').show();
+	$('#astro').hide();
 	$('html, body').stop().animate({
         scrollTop: yCord
     }, 600, function() {
-		$('.character').prop("src","./asset/astro.png");
 		$('#GoHome').prop("disabled",false);
-		$('.character').removeClass("shake");
+		$('#astro').show();
+		$('#fire').hide();
 	});
     return false;
+}
+function planetScroll(planetNum){
+	$('.planet').each(function(i, obj) {
+		if(i == planetNum){
+			$('html, body').stop().animate({
+				scrollTop: $(this).offset().top - ($(this).width()/2)
+			}, 600, function() {
+				//done
+			});	
+		}
+	});
+}
+function digCheck(){
+	var nearPlanet = false;
+	$('.planet').each(function(i, obj) {
+			if($(".character").offset().top > $(this).offset().top - ($(this).width()/1.5) && $(".character").offset().top < $(this).offset().top + ($(this).width()/3) + $(this).width()){
+				nearPlanet = true;
+			}
+	});
+	return nearPlanet;
+}
+
+
+//HELPER FUNCTIONS
+function nextPlanet(){
+	$('.pNav').each(function(i, obj) {
+		if($(this).hasClass('active')){
+			if(i+1 > (NUM_PLANETS-1)){
+				planetScroll(0)
+			}
+			else{
+				planetScroll(i+1);
+			}
+		}
+	});
+}
+function previousPlanet(){
+	$('.pNav').each(function(i, obj) {
+		if($(this).hasClass('active')){
+			if(i == 0){
+				planetScroll(NUM_PLANETS-1);
+			}
+			else{
+				planetScroll(i-1);
+			}
+		}
+	});
 }

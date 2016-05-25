@@ -18,7 +18,7 @@
 			<img src="./asset/t2.jpg" class="img-thumbnail center-block">
 				<div class="text-center center-block">
 				
-					<div class = "spacer"></div>
+					<hr>
 					
 					<p class="white-text"> 
 						My name is <strong class="color-text">Jackson Truong</strong>, a third year 
@@ -29,28 +29,26 @@
 						<button class="btn btn-default btn-sm" type="submit"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>  Resume</button>
 						<button class="btn btn-default btn-sm" type="submit"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>  GitHub</button>
 						<button class="btn btn-default btn-sm" type="submit"><span class="glyphicon glyphicon-link" aria-hidden="true"></span>  LinkedIn</button>
-					</div>	
-					
-					<div class = "spacer"></div>			
+					</div>			
 				
 					<hr>
 						<h4 class="white-text"> Choose a mission! </h4>
 						<nav id="mission-control">
 						  <ul class="nav nav-pills nav-stacked">
-								<li class="active"><a href="#planet-1">Section 1</a></li>
-								<li><a href="#planet-2">Section 2</a></li>
-								<li><a href="#planet-3">Section 3</a></li>
+								<li class="pNav"><a class="disabled" href="#planet-1">PLANET 1</a></li>
+								<li class="pNav"><a class="disabled" href="#planet-2">PLANET 2</a></li>
+								<li class="pNav"><a class="disabled" href="#planet-3">PLANET 3</a></li>
 							</ul>
 						</nav>
 						
 						<div class="text-center center-block">
-							<button class="btn btn-warning btn-sm" type="submit"><span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>  Previous</button>
+							<button class="btn btn-warning btn-sm" type="submit" onclick="previousPlanet();"><span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>  Previous</button>
 							<button class="btn btn-danger btn-sm" type="submit" onclick="homeScroll(0);" id="GoHome"><span class="glyphicon glyphicon-eject" aria-hidden="true"></span>  Go Home</button>
-							<button class="btn btn-warning btn-sm" type="submit">  Next  <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span></button>
+							<button class="btn btn-warning btn-sm" type="submit" onclick=" nextPlanet();">  Next  <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span></button>
 						</div>
 						
 					<hr>
-					<div class = "spacer"></div>	
+
 					<ul class="list-unstyled">
 						<li class="white-text"><strong>test.test@gmail.com</strong></li>
 						<li class="white-text"><strong>909.123.4567</strong></li>
@@ -65,7 +63,8 @@
 			<h1 class="white-text center-text" id="archedName">Jackson Truong</h1>
 			
 			<!-- ASTRONAUT -->
-			<img class="character" src="./asset/astro.png" width="50%">	
+			<img class="character" id="astro" src="./asset/astro.png" width="50%">	
+			<img class="character shake" id="fire" src="./asset/fire.png" width="50%">	
 			
 			<!-- PLANET 1 -->
 			<div class="section container planet center-block" id="planet-1">
@@ -99,6 +98,12 @@
 					</p>	
 				</div>
 			</div>	
+			
+			<div class="planetary-gap"></div>
+			
+			<div class="section footer">
+			
+			</div>
 			
 		</div>
 	</div>
